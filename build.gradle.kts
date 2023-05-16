@@ -20,7 +20,6 @@ val junitVersion = "5.9.2"
 dependencies {
     antlr("org.antlr:antlr4:4.12.0")
 
-    implementation("org.ow2.asm:asm-all:5.2")
     implementation("com.andreapivetta.kolor:kolor:1.0.0")
 
     testImplementation(kotlin("test"))
@@ -50,7 +49,9 @@ tasks {
         }
     }
 
-    compileKotlin { dependsOn.add(generateGrammarSource) }
+    compileKotlin {
+        dependsOn.add(generateGrammarSource)
+    }
     compileTestKotlin {
         dependsOn.add(generateTestGrammarSource)
     }

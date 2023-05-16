@@ -4,7 +4,6 @@ import GoLexer
 import GoParser
 import com.andreapivetta.kolor.red
 import inno.jago.ast.converter.toSourceFileNode
-import inno.jago.codegen.GoCodegen
 import inno.jago.common.InputArgumentsException
 import inno.jago.cppgen.Translator
 import inno.jago.semantic.TypeChecker
@@ -48,14 +47,6 @@ private fun createTextFile(fileName: String, content: String) = File(fileName).a
     writeText(content)
 }
 
-private fun createBinaryFile(fileName: String, content: ByteArray) = File(fileName).apply {
-    if (exists()) {
-        delete()
-    }
-    createNewFile()
-    writeBytes(content)
-}
-
 fun main(args: Array<String>) {
     runCatching {
         val (inputFilename, outputFilename) = validateAndGetCliArguments(args)
@@ -69,12 +60,6 @@ fun main(args: Array<String>) {
         @Suppress("UNUSED_VARIABLE")
         val sourceFileNode = parser.sourceFile().toSourceFileNode()
         TypeChecker(sourceFileNode = sourceFileNode).startTypeCheck()
-
-        val compiler = GoCodegen()
-        createBinaryFile(
-            fileName = "Main.class",
-            content = compiler.compile(sourceFileNode, "Main")
-        )
 
         val outputCppCode = Translator(root = sourceFileNode).translate()
         createTextFile(outputFilename, outputCppCode)
