@@ -35,7 +35,7 @@ The following Go constructs are not supported since there is no analogy in *C++*
 
 There are also features that is added to initial **Go* grammar:
 1. Function overloading.
-2. Built-in `to_string(x)` function converts `x` to string. `x` must be of a base type: `int`, `float64`, `bool`, or pointer to these types.
+2. Built-in `toString(x)` function converts `x` to string. `x` must be of a base type: `int`, `float64`, `bool`, or pointer to these types.
 
 ## Development process
 
