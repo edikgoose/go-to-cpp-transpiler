@@ -21,6 +21,11 @@ The last command has the following options:
 
    ```java -jar build/libs/jago.jar <path_to_go_code_file> -o <path_to_cpp_code_file>```
 
+Also, you can compile the resulting **C++** source code:
+1. Put **C++** the resulting source code file to `./generated-cpp/src/main/cpp/`.
+2. Run ```./gradlew generated-cpp:build```
+3. Then you can find a compiled executable file in subdirectory of `./generated-cpp/build/exe/main/`
+
 ## Support for Go language constructs
 
 The following Go constructs are not supported since there is no analogy in *C++*
